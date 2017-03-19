@@ -5,7 +5,7 @@ var Twitter = new twit(config)
 //RETWEET
 var retweet = function(){
   var params = {
-    q: "#happy", "#joy", "#smile",
+    q: "#happy, #joy, #smile",
     result_type: 'recent',
     lang: 'en'
   }
@@ -33,3 +33,38 @@ var retweet = function(){
 retweet()
 
 setInterval(retweet, 300000)
+
+
+//Favorite
+
+var favoriteTweet = function(){
+  var params = {
+    q: '#happy, #joy, #smile',
+    result_type: 'recent',
+    lang:'en'
+  }
+
+  Twitter.get('search/tweets', params, function(err, data){
+    var tweet = data.stauses
+    var randomTweet = ranDom(tweet)
+
+    if(typeof randomTweet != 'undefined'){
+      Twitter.post('favorites/create', {id: randomTweet.id_str}, function(err, response){
+        if(err){
+          console.log('cannot be favorite')
+        } else {
+          console.log('favorited')
+        }
+      })
+    }
+  })
+}
+
+favoriteTweet()
+
+setInterval(favoriteTweet, 3600000)
+
+function ranDom (arr){
+  var index = Math.floor(Math.random()*arr.length)
+  return arr[index]
+}
