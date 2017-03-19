@@ -1,4 +1,5 @@
-require('dotenv').config({path: '/env/dev.env'})
+require('dotenv').config()
+
 
 module.exports = {
   consumer_key: process.env.CONSUMER_KEY,

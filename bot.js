@@ -45,7 +45,7 @@ var favoriteTweet = function(){
   }
 
   Twitter.get('search/tweets', params, function(err, data){
-    var tweet = data.stauses
+    var tweet = data.statuses
     var randomTweet = ranDom(tweet)
 
     if(typeof randomTweet != 'undefined'){
