@@ -1,0 +1,4 @@
+node_modules/
+playground/
+env/
+npm-debug.log
